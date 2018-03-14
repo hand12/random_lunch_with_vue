@@ -1,0 +1,19 @@
+$mainColor: #4DC453;
+$mainGradColor: #76B90E;
+$lightGray: #EAEAEA;
+
+@keyframes fadeIn {
+  0% { opacity: 0; }
+  100% { opacity: 1; }
+}
+
+@keyframes fadeOut {
+  0% { opacity: 1; }
+  100% { opacity: 0; }
+}
+
+@keyframes popUp {
+  0% { transform: translateY(800px) }
+  60% { transform: translateY(-50px) }
+  100% { transform: translateY(0) }
+}

@@ -20,4 +20,16 @@ export default {
   color: #2c3e50;
   margin-top: 60px;
 }
+
+body {
+  margin: 0;
+}
+
+input {
+  border-style: none;
+  outline: none;
+  outline-style: none;
+  box-shadow: none;
+  color: #2c3e50;
+}
 </style>
