@@ -5,7 +5,7 @@
       <div class="closeButton" v-on:click="closeModal">x</div>
       <h2>グループの新規作成</h2>
       <input id="groupName" placeholder="TKメディアユニット" class="groupNameField" />
-      <button type="submit" v-on:click="postGroupName">作成</button>
+      <button type="submit">作成</button>
     </div>
   </div>
 </template>
@@ -15,16 +15,13 @@ export default {
   name: 'AddGroupModal',
   data() {
     return {
-      groupName: "",
+      groupName: '',
     };
   },
   methods: {
     closeModal() {
       this.$emit('closeButtonClicked');
     },
-    postGroupName() {
-      console.log("hoge");
-    }
   },
 };
 </script>

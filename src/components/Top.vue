@@ -9,12 +9,22 @@
 <script>
 import Title from './Title';
 import AddModalButton from './AddModalButton';
+import { mapGetters, mapActions } from 'vuex';
 
 export default {
   name: 'Top',
   components: {
     'my-title': Title,
     'modal-button': AddModalButton,
+  },
+  computed: mapGetters({
+    groups: 'allGroups',
+  }),
+  methods: mapActions([
+    
+  ]),
+  created() {
+    this.$store.dispatch('getAllGroups');
   },
 };
 </script>
