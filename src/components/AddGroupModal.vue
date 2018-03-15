@@ -1,11 +1,11 @@
 <template>
-  <div id="addGroupModal">
+  <div id="ModalPanel">
     <div class="shadow" v-on:click="closeModal"></div>
     <div class="panel">
       <div class="closeButton" v-on:click="closeModal">x</div>
       <h2>グループの新規作成</h2>
-      <input id="groupName" placeholder="TKメディアユニット" class="groupNameField" />
-      <button type="submit">作成</button>
+      <input v-model="groupName" id="groupName" placeholder="TKメディアユニット" class="groupNameField" />
+      <button type="submit" v-on:click="addGroup">作成</button>
     </div>
   </div>
 </template>
@@ -22,49 +22,17 @@ export default {
     closeModal() {
       this.$emit('closeButtonClicked');
     },
+    addGroup() {
+      if (this.groupName.trim().length <= 0) return;
+      this.$store.dispatch('addGroup', this.groupName.trim());
+      this.$emit('closeButtonClicked');
+    },
   },
 };
 </script>
 
 <style scoped lang="scss">
 @import '../assets/common';
-
-#addGroupModal {
-  position: fixed;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-
-.shadow {
-  position: fixed;
-  top: 0;
-  right: 0;
-  left: 0;
-  bottom: 0;
-  background: rgba(0, 0, 0, 0.6);
-  animation-name: fadeIn;
-  animation-duration: 0.5s;
-}
-
-.panel {
-  position: relative;
-  z-index: 1;
-  max-height: 80vh;
-  overflow-y: scroll;
-  width: 50vw;
-  min-width: 300px;
-  background: white;
-  box-sizing: border-box;
-  padding: 30px;
-  border-radius: 2.5px;
-  box-shadow: rgba(0, 0, 0, 0.2) 2px 2px 5px;
-  animation-name: popUp;animation-duration: 0.5s;
-}
 
 .closeButton {
   position: absolute;

@@ -2,6 +2,7 @@
   <div class="main_container">
     <my-title></my-title>
     <h2>参加したいグループを選択してください</h2>
+    <groups></groups>
     <modal-button></modal-button>
   </div>
 </template>
@@ -9,22 +10,14 @@
 <script>
 import Title from './Title';
 import AddModalButton from './AddModalButton';
-import { mapGetters, mapActions } from 'vuex';
+import Groups from './Groups';
 
 export default {
   name: 'Top',
   components: {
     'my-title': Title,
     'modal-button': AddModalButton,
-  },
-  computed: mapGetters({
-    groups: 'allGroups',
-  }),
-  methods: mapActions([
-    
-  ]),
-  created() {
-    this.$store.dispatch('getAllGroups');
+    'groups': Groups,
   },
 };
 </script>
