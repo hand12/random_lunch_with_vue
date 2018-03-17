@@ -1,13 +1,19 @@
 <template>
   <li>
-    <span class="shopName">龍門</span>
-    <span class="removeButton">x</span>
+    <span class="shopName">{{restaurant.name}}</span>
+    <span v-on:click="removeShop" class="removeButton">x</span>
   </li>
 </template>
 
 <script>
 export default {
   name: 'Shop',
+  props: ['restaurant'],
+  methods: {
+    removeShop() {
+      this.$store.dispatch('removeShop', this.restaurant.id);
+    },
+  },
 };
 </script>
 

@@ -1,9 +1,13 @@
 <template>
   <div class="main_container">
     <my-title></my-title>
-    <h1 class="groupName">転職会議</h1>
-    <member-list />
-    <shop-list />
+    <h1 class="groupName">{{group.name}}</h1>
+    <member-list
+      v-bind:members="members"
+    />
+    <shop-list
+      v-bind:restaurants="restaurants"
+    />
     <start-button />
   </div>
 </template>
@@ -13,6 +17,7 @@ import Title from "../Title";
 import MemberList from './memberList';
 import ShopList from './shopList';
 import StartButton from './startButton';
+import { mapGetters } from 'vuex';
 
 export default {
   name: 'GroupDetail',
@@ -21,6 +26,16 @@ export default {
     'member-list': MemberList,
     'shop-list': ShopList,
     'start-button': StartButton,
+  },
+  computed: {
+    ...mapGetters({
+      group: 'group',
+      members: 'members',
+      restaurants: 'restaurants',
+    }),
+  },
+  created() {
+    this.$store.dispatch('getGroup', this.$route.params.id);
   },
 };
 </script>

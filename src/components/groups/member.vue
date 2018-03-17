@@ -1,13 +1,19 @@
 <template>
   <li>
-    <span class="memberName">やました</span>
-    <span class="removeButton">x</span>
+    <span class="memberName">{{ member.name }}</span>
+    <span v-on:click="removeMember" class="removeButton">x</span>
   </li>
 </template>
 
 <script>
 export default {
   name: 'Member',
+  props: ['member'],
+  methods: {
+    removeMember() {
+      this.$store.dispatch('removeMember', this.member.id);
+    },
+  },
 };
 </script>
 

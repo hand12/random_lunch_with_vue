@@ -2,37 +2,62 @@
   <div id="shopList">
     <div class="header">
       <h2>候補店舗一覧</h2>
-      <button>追加する</button>
+      <button v-on:click="openModal">追加する</button>
     </div>
     <ul class="shops">
-      <shop />
-      <shop />
-      <shop />
+      <shop
+        v-for="restaurant in restaurants"
+        v-bind:key="restaurant.id"
+        v-bind:restaurant="restaurant"
+      />
     </ul>
+    <shop-form
+      v-if="modalOpen"
+      v-on:closeButtonClicked="closeModal"
+    />
   </div>
 </template>
 
 <script>
 import Shop from './shop';
+import ShopForm from './shopForm';
 
 export default {
   name: 'ShopList',
   components: {
     shop: Shop,
+    'shop-form': ShopForm,
+  },
+  props: ['restaurants'],
+  data() {
+    return {
+      modalOpen: false,
+    }
+  },
+  methods: {
+    openModal() {
+      this.modalOpen = true;
+    },
+    closeModal() {
+      this.modalOpen = false;
+    },
   },
 };
 </script>
 
 <style scoped lang="scss">
 @import '../../assets/common';
+@import '../../assets/modalPanel';
 
 #shopList {
   padding: 0 20px;
+  text-align: left;
   text-align: left;
   .header {
     display: flex;
     justify-content: space-between;
     h2 {
+      z-index: -1;
       display: inline-block;
       margin: 0;
       font-size: 1rem;

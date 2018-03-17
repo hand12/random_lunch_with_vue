@@ -1,8 +1,10 @@
 import axios from 'axios';
-
-const Host = 'https://damp-crag-50946.herokuapp.com/';
+import Host from './host';
 
 export default {
+  getGroup: (groupId) => (
+    axios.get(`${Host}groups/${groupId}`).then(res => res.data.group)
+  ),
   getGroups: () => (
     axios.get(`${Host}groups`).then(res => res.data)
   ),

@@ -2,29 +2,52 @@
   <div id="memberList">
     <div class="header">
       <h2>参加者</h2>
-      <button>参加する</button>
+      <button v-on:click="openModal">参加する</button>
     </div>
     <ul class="members">
-      <member />
-      <member />
-      <member />
+      <member
+        v-for="member in members"
+        v-bind:key="member.id"
+        v-bind:member="member"
+      />
     </ul>
+    <member-form 
+      v-if="modalOpen"
+      v-on:closeButtonClicked="closeModal"
+    />
   </div>
 </template>
 
 <script>
 import Member from './member';
+import MemberForm from './memberForm';
 
 export default {
   name: 'MemberList',
   components: {
     member: Member,
-  }
+    'member-form': MemberForm,
+  },
+  props: ['members'],
+  data() {
+    return {
+      modalOpen: false,
+    }
+  },
+  methods: {
+    openModal() {
+      this.modalOpen = true;
+    },
+    closeModal() {
+      this.modalOpen = false;
+    },
+  },
 };
 </script>
 
 <style scoped lang="scss">
 @import '../../assets/common';
+@import '../../assets/modalPanel';
 
 #memberList {
   margin-bottom: 24px;
@@ -34,6 +57,7 @@ export default {
     display: flex;
     justify-content: space-between;
     h2 {
+      z-index: -1;
       display: inline-block;
       margin: 0;
       font-size: 1rem;

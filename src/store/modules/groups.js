@@ -2,17 +2,36 @@ import group from '../../api/group';
 
 // initial state
 const state = {
+  group: {
+    id: '',
+    name: '',
+    members: [],
+    restaurants: [],
+  },
   all: [],
   nowLoading: false,
 };
 
 // getters
 const getters = {
+  group: state => state.group,
+  members: state => state.group.members,
+  restaurants: state => state.group.restaurants,
   allGroups: state => state.all,
 };
 
 // actions
 const actions = {
+  getGroup({ commit }, groupId) {
+    commit('setStartLoading');
+    group.getGroup(groupId)
+      .then(group => {
+        commit('setGroup', group);
+        commit('setFinishLoading');
+      })
+      .catch(err => console.log(err));
+
+  },
   getAllGroups({ commit }) {
     commit('setStartLoading');
     group.getGroups()
@@ -32,6 +51,9 @@ const actions = {
 
 // mutations
 const mutations = {
+  setGroup(state, group) {
+    state.group = group;
+  },
   setGroups(state, groups) {
     state.all = groups;
   },
