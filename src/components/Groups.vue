@@ -1,31 +1,32 @@
 <template>
   <ul class="groupList">
-    <loading v-if="nowLoading"></loading>
-    <group
-      v-if="!nowLoading"
+    <loading></loading>
+    <router-link
       v-for="group in groups"
       v-bind:key="group.id"
-      v-bind:group="group">
-    </group>
+      :to="{ name: 'GroupDetail', params: { id: group.id } }">
+      <group
+        v-bind:group="group">
+      </group>
+    </router-link>
   </ul>
 </template>
 
 <script>
-import { mapState, mapGetters, mapActions } from 'vuex';
+import { mapGetters } from 'vuex';
 import Group from './Group';
 import LoadingModal from './LoadingModal';
 
 export default {
   name: 'Groups',
   components: {
-    'group': Group,
-    'loading': LoadingModal,
+    group: Group,
+    loading: LoadingModal,
   },
   computed: {
     ...mapGetters({
       groups: 'allGroups',
     }),
-    ...mapState(['nowLoading']),
   },
   created() {
     this.$store.dispatch('getAllGroups');

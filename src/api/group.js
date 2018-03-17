@@ -7,8 +7,8 @@ export default {
     axios.get(`${Host}groups`).then(res => res.data)
   ),
   postGroup: (groupName) => {
-    let params = new URLSearchParams();
-    params.append(`group[name]`, groupName);
+    const params = new URLSearchParams();
+    params.append('group[name]', groupName);
     return axios.post(`${Host}groups`, params);
   },
 };

@@ -1,7 +1,7 @@
 <template>
   <div id="app">
-    <img src="./assets/logo.png">
     <router-view/>
+    <img src="./assets/logo.png">
   </div>
 </template>
 
@@ -31,5 +31,18 @@ input {
   outline-style: none;
   box-shadow: none;
   color: #2c3e50;
+}
+
+button {
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+  outline: none;
+	appearance: none;
+}
+
+a {
+  color: #2c3e50;
+  text-decoration: none;
 }
 </style>

@@ -17,7 +17,7 @@ export default {
   components: {
     'my-title': Title,
     'modal-button': AddModalButton,
-    'groups': Groups,
+    groups: Groups,
   },
 };
 </script>

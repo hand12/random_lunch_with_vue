@@ -1,15 +1,15 @@
-import group from '../../api/group'
+import group from '../../api/group';
 
 // initial state
 const state = {
   all: [],
   nowLoading: false,
-}
+};
 
 // getters
 const getters = {
   allGroups: state => state.all,
-}
+};
 
 // actions
 const actions = {
@@ -36,11 +36,9 @@ const mutations = {
     state.all = groups;
   },
   setStartLoading(state) {
-    console.log("start呼ばれた");
     state.nowLoading = true;
   },
   setFinishLoading(state) {
-    console.log("finish呼ばれた");
     state.nowLoading = false;
   },
 };

@@ -1,5 +1,5 @@
 <template>
-  <div id="ModalPanel">
+  <div v-if="!!nowLoading" id="ModalPanel">
     <div class="shadow"></div>
     <div class="panel">
       <h2 class="loading">Now Loading</h2>
@@ -8,8 +8,13 @@
 </template>
 
 <script>
+import { mapState } from 'vuex';
+
 export default {
   name: 'LoadingModal',
+  computed: mapState({
+    nowLoading: state => state.nowLoading,
+  }),
 };
 </script>
 
