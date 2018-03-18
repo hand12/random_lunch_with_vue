@@ -6,7 +6,7 @@ export default {
     const params = new URLSearchParams();
     params.append('restaurant[name]', param.shopName)
     params.append('restaurant[group_id]', param.groupId);
-    return axios.post(`${Host}restaurants`, params);
+    return axios.post(`${Host}restaurants`, params).then(res => res.data);
   },
   deleteShop: (shopId) => {
     return axios.delete(`${Host}restaurants/${shopId}`);

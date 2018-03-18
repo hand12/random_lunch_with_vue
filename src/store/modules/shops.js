@@ -10,13 +10,19 @@ const actions = {
   addShop({ commit }, params) {
     commit('setStartLoading');
     shop.postShop(params)
-      .then(() => commit('setFinishLoading'))
+      .then(res => {
+        commit('setFinishLoading');
+        this.dispatch('getGroup', res.group_id);
+      })
       .catch(err => console.log(err));
   },
-  removeShop({ commit }, shopId) {
+  removeShop({ commit }, targetShop) {
     commit('setStartLoading');
-    shop.deleteShop(shopId)
-      .then(() => commit('setFinishLoading'))
+    shop.deleteShop(targetShop.id)
+      .then(() => {
+        commit('setFinishLoading');
+        this.dispatch('getGroup', targetShop.group_id);
+      })
       .catch(err => console.log(err));
   },
 };

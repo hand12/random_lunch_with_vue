@@ -11,7 +11,7 @@ export default {
   props: ['member'],
   methods: {
     removeMember() {
-      this.$store.dispatch('removeMember', this.member.id);
+      this.$store.dispatch('removeMember', this.member);
     },
   },
 };

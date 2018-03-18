@@ -1,15 +1,26 @@
 <template>
   <div id="startButton">
     1グループあたり
-    <input type="number" defaultValue="4" max="8" min="1" required class="memberNumField">
+    <input v-model="perNum" type="number" defaultValue="4" max="8" min="1" required class="memberNumField">
     人で
-    <button type="submit" class="startButton">振り分け開始</button>
+    <button v-on:click="startGrouping" type="submit" class="startButton">振り分け開始</button>
   </div>
 </template>
 
 <script>
 export default {
   name: 'StartButton',
+  data() {
+    return {
+      perNum: '',
+    };
+  },
+  methods: {
+    startGrouping() {
+      if(this.perNum <= 0) return alert("0より大きい数字を入力してください");
+      this.$router.push({name: 'GroupingResult', query: { perNum: this.perNum } });
+    },
+  },
 };
 </script>
 

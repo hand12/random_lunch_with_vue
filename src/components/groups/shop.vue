@@ -11,7 +11,7 @@ export default {
   props: ['restaurant'],
   methods: {
     removeShop() {
-      this.$store.dispatch('removeShop', this.restaurant.id);
+      this.$store.dispatch('removeShop', this.restaurant);
     },
   },
 };

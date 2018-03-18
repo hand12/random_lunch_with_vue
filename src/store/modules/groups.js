@@ -8,6 +8,7 @@ const state = {
     members: [],
     restaurants: [],
   },
+  groupingResult: [],
   all: [],
   nowLoading: false,
 };
@@ -18,6 +19,7 @@ const getters = {
   members: state => state.group.members,
   restaurants: state => state.group.restaurants,
   allGroups: state => state.all,
+  result: state => state.groupingResult,
 };
 
 // actions
@@ -30,7 +32,6 @@ const actions = {
         commit('setFinishLoading');
       })
       .catch(err => console.log(err));
-
   },
   getAllGroups({ commit }) {
     commit('setStartLoading');
@@ -44,8 +45,19 @@ const actions = {
   addGroup({ commit }, groupName) {
     commit('setStartLoading');
     group.postGroup(groupName)
-      .then(() => commit('setFinishLoading'))
+      .then(() => {
+        commit('setFinishLoading');
+        this.dispatch('getAllGroups');
+      })
       .catch(err => console.log(err));
+  },
+  startGrouping({ commit }, params) {
+    commit('setStartLoading');
+    group.getGrouping(params)
+      .then(res => {
+        commit('setFinishLoading');
+        commit('setResult', res);
+      })
   },
 };
 
@@ -62,6 +74,9 @@ const mutations = {
   },
   setFinishLoading(state) {
     state.nowLoading = false;
+  },
+  setResult(state, result) {
+    state.groupingResult = result;
   },
 };
 
