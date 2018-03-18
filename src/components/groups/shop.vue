@@ -1,8 +1,10 @@
 <template>
-  <li>
-    <span class="shopName">{{restaurant.name}}</span>
-    <span v-on:click="removeShop" class="removeButton">x</span>
-  </li>
+  <transition name="fade">
+    <li>
+      <span class="shopName">{{restaurant.name}}</span>
+      <span v-on:click="removeShop" class="removeButton">x</span>
+    </li>
+  </transition>
 </template>
 
 <script>

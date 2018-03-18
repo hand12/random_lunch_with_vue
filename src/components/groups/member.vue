@@ -1,8 +1,10 @@
 <template>
-  <li>
-    <span class="memberName">{{ member.name }}</span>
-    <span v-on:click="removeMember" class="removeButton">x</span>
-  </li>
+  <transition name="fade">
+    <li>
+      <span class="memberName">{{ member.name }}</span>
+      <span v-on:click="removeMember" class="removeButton">x</span>
+    </li>
+  </transition>
 </template>
 
 <script>

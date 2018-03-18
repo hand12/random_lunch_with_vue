@@ -20,6 +20,7 @@ const getters = {
   restaurants: state => state.group.restaurants,
   allGroups: state => state.all,
   result: state => state.groupingResult,
+  nowLoading: state => state.nowLoading,
 };
 
 // actions

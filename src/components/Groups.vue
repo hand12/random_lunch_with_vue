@@ -1,6 +1,6 @@
 <template>
   <ul class="groupList">
-    <loading></loading>
+    <loading />
     <router-link
       v-for="group in groups"
       v-bind:key="group.id"

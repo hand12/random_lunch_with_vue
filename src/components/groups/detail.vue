@@ -9,6 +9,7 @@
       v-bind:restaurants="restaurants"
     />
     <start-button />
+    <loading-modal />
   </div>
 </template>
 
@@ -17,6 +18,7 @@ import Title from "../Title";
 import MemberList from './memberList';
 import ShopList from './shopList';
 import StartButton from './startButton';
+import LoadingModal from '../LoadingModal';
 import { mapGetters } from 'vuex';
 
 export default {
@@ -26,6 +28,7 @@ export default {
     'member-list': MemberList,
     'shop-list': ShopList,
     'start-button': StartButton,
+    'loading-modal': LoadingModal,
   },
   computed: {
     ...mapGetters({

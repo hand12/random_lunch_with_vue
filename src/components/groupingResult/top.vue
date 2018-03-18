@@ -5,6 +5,7 @@
     <shop-list
       v-bind:result="result"
     />
+    <loading-modal />
     <router-link :to="{ name: 'Top'}">Topに戻る</router-link>
   </div>
 </template>
@@ -12,6 +13,7 @@
 <script>
 import Title from "../Title";
 import shopList from './shopList';
+import LoadingModal from '../LoadingModal';
 import { mapGetters } from 'vuex';
 
 export default {
@@ -19,6 +21,7 @@ export default {
   components: {
     'my-title': Title,
     'shop-list': shopList,
+    'loading-modal': LoadingModal,
   },
   computed: {
     ...mapGetters({
@@ -38,7 +41,7 @@ export default {
 <style scoped lang="scss">
 @import '../../assets/common';
 .main_container {
-  width: 50vw;
+  width: 80vw;
   min-width: 350px;
   margin: 0 auto;
 }
